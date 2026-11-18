@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { categories, faNum, type MenuItem } from "@/data/menu";
-import { Divider, EmptyState, SignatureFrame } from "@/components/Ornaments";
+import { Crest, Divider, EmptyState, SignatureFrame } from "@/components/Ornaments";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -19,7 +19,7 @@ export const Route = createFileRoute("/")({
 
 function Card({ item }: { item: MenuItem }) {
   return (
-    <article className={`group relative overflow-hidden rounded-sm marble p-5 md:p-6 transition-colors duration-500 md:hover:bg-card-hover ${item.signature ? "md:pb-14" : ""}`}>
+    <article className={`group relative overflow-hidden rounded-sm marble p-5 md:p-6 transition-colors duration-500 md:hover:bg-card-hover ${item.signature ? "pb-10 md:pb-16" : ""}`}>
       {item.signature && <SignatureFrame />}
       <div className="relative bg-background/70 px-3 pt-3 pb-7 ring-1 ring-accent/25 shadow-[inset_0_0_20px_oklch(0_0_0/0.5)]">
         <div className="aspect-[4/3] overflow-hidden">
@@ -55,7 +55,7 @@ function Index() {
   return (
     <div dir="rtl" className="candle min-h-screen font-sans">
       <header className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur">
-        <div className="pt-4 pb-2 text-center">
+        <div className="flex flex-col items-center pt-3 pb-2 text-center"><Crest className="mb-1 h-9 w-[68px] text-accent md:h-11 md:w-[84px]" />
           <div className="font-display text-2xl font-light tracking-[0.55em] [text-shadow:0_0_18px_oklch(0.8_0.08_75/0.25)] text-foreground">SINCERE</div>
           <div className="mt-1 text-[11px] font-light tracking-[0.4em] text-secondary-foreground">رستوران سینسیر</div>
         </div>

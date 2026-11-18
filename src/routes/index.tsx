@@ -19,7 +19,7 @@ export const Route = createFileRoute("/")({
 
 function Card({ item }: { item: MenuItem }) {
   return (
-    <article className={`group relative overflow-hidden rounded-sm marble p-5 md:p-6 transition-colors duration-500 md:hover:bg-card-hover">
+    <article className={`group relative overflow-hidden rounded-sm marble p-5 md:p-6 transition-colors duration-500 md:hover:bg-card-hover ${item.signature ? "md:pb-14" : ""}`}>
       {item.signature && <SignatureFrame />}
       <div className="relative bg-background/70 px-3 pt-3 pb-7 ring-1 ring-accent/25 shadow-[inset_0_0_20px_oklch(0_0_0/0.5)]">
         <div className="aspect-[4/3] overflow-hidden">

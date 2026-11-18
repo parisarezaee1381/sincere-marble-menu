@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { categories, faNum, type MenuItem } from "@/data/menu";
-import { EmptyState, SignatureFrame, WineDrop } from "@/components/Ornaments";
+import { Divider, EmptyState, SignatureFrame } from "@/components/Ornaments";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -19,9 +19,9 @@ export const Route = createFileRoute("/")({
 
 function Card({ item }: { item: MenuItem }) {
   return (
-    <article className="group relative overflow-hidden rounded-sm border border-border bg-card marble p-5 transition-colors duration-500 md:hover:bg-card-hover">
+    <article className="group relative overflow-hidden rounded-sm marble p-5 md:p-6 transition-colors duration-500 md:hover:bg-card-hover">
       {item.signature && <SignatureFrame />}
-      <div className="relative bg-background/60 px-3 pt-3 pb-7 ring-1 ring-border">
+      <div className="relative bg-background/70 px-3 pt-3 pb-7 ring-1 ring-accent/25 shadow-[inset_0_0_20px_oklch(0_0_0/0.5)]">
         <div className="aspect-[4/3] overflow-hidden">
           <img src={item.img} alt={item.name} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 md:group-hover:scale-[1.03]" />
         </div>
@@ -39,12 +39,11 @@ function Card({ item }: { item: MenuItem }) {
 }
 
 function Index() {
-  const [loading, setLoading] = useState(true);
+  const loading = false;
   const [active, setActive] = useState("breakfast");
   const [veg, setVeg] = useState(false);
   const tabsRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => { const t = setTimeout(() => setLoading(false), 1500); return () => clearTimeout(t); }, []);
   useEffect(() => {
     if (loading) return;
     const obs = new IntersectionObserver((es) => es.forEach((e) => e.isIntersecting && setActive(e.target.id)), { rootMargin: "-40% 0px -55% 0px" });
@@ -55,10 +54,9 @@ function Index() {
 
   return (
     <div dir="rtl" className="candle min-h-screen font-sans">
-      {loading && <div className="fixed inset-0 z-50 flex items-center justify-center bg-background"><WineDrop /></div>}
       <header className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur">
         <div className="pt-4 pb-2 text-center">
-          <div className="font-display text-xl font-light tracking-[0.5em] text-foreground">SINCERE</div>
+          <div className="font-display text-2xl font-light tracking-[0.55em] [text-shadow:0_0_18px_oklch(0.8_0.08_75/0.25)] text-foreground">SINCERE</div>
           <div className="mt-1 text-[11px] font-light tracking-[0.4em] text-secondary-foreground">رستوران سینسیر</div>
         </div>
         <nav ref={tabsRef} className="no-scrollbar flex gap-6 overflow-x-auto px-5 md:justify-center">
@@ -68,15 +66,15 @@ function Index() {
         </nav>
       </header>
 
-      <main className="mx-auto max-w-6xl px-5 py-8">
+      <main className="fade-in mx-auto max-w-6xl px-5 py-8">
         <div className="mb-6 flex justify-end">
           <button onClick={() => setVeg(!veg)} className={`rounded-full border px-4 py-1.5 text-xs transition-colors ${veg ? "border-accent text-accent" : "border-border text-secondary-foreground"}`}>فقط وجترین</button>
         </div>
         {categories.map((c) => {
           const items = veg ? c.items.filter((i) => i.badges?.includes("وجترین")) : c.items;
           return (
-            <section key={c.id} id={c.id} className="scroll-mt-32 border-t border-border py-12 first:border-t-0">
-              <h2 className="mb-10 text-center text-2xl font-extralight tracking-[0.35em] text-foreground">{c.title}</h2>
+            <section key={c.id} id={c.id} className="scroll-mt-32 py-14">
+              <div className="mb-12 flex flex-col items-center gap-4"><h2 className="inscription text-center text-2xl md:text-3xl text-foreground">{c.title}</h2><Divider /></div>
               {items.length ? <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{items.map((i) => <Card key={i.id} item={i} />)}</div> : <EmptyState />}
             </section>
           );

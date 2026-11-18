@@ -1,32 +1,36 @@
 export function GrapeCorner({ className = "" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 80 80" className={className} fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" aria-hidden>
-      <path d="M4 4 C 24 6, 40 14, 52 30" />
-      <path d="M22 7 C 26 14, 24 20, 18 22 C 22 16, 18 10, 22 7Z" />
-      <path d="M38 14 q 6 -6 12 -2" />
-      <circle cx="46" cy="36" r="4" /><circle cx="54" cy="38" r="4" /><circle cx="50" cy="45" r="4" />
-      <circle cx="42" cy="44" r="4" /><circle cx="47" cy="53" r="4" /><circle cx="44" cy="61" r="3.5" />
-      <path d="M8 4 C 6 20, 10 34, 6 48" opacity=".7" />
-      <path d="M6 30 q 6 2 8 8" opacity=".7" />
+    <svg viewBox="0 0 100 100" className={className} fill="none" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <path d="M3 3 C 20 4, 34 9, 46 20 S 62 40, 66 52" />
+      <path d="M3 3 C 4 20, 9 34, 20 46 S 40 62, 52 66" />
+      <path d="M18 6 c 6 -4 13 -2 15 4 c -3 -1 -5 1 -5 4 c -3 -2 -6 0 -7 3 c -1 -5 -4 -7 -3 -11Z" />
+      <path d="M22 8 l 4 6 M26 7 l 1 5" strokeWidth=".7" />
+      <path d="M6 18 c -4 6 -2 13 4 15 c -1 -3 1 -5 4 -5 c -2 -3 0 -6 3 -7 c -5 -1 -7 -4 -11 -3Z" />
+      <path d="M36 13 c 4 -3 9 -2 10 2 M40 11 c 2 -4 6 -5 8 -3" strokeWidth=".8" />
+      <path d="M13 36 c -3 4 -2 9 2 10 M11 40 c -4 2 -5 6 -3 8" strokeWidth=".8" />
+      <path d="M30 30 q 4 4 8 6" strokeWidth=".8" />
+      {[[40,40],[46,43],[43,48],[50,49],[46,54],[52,56],[48,61]].map(([x,y],i)=>(
+        <circle key={i} cx={x} cy={y} r="2.8" strokeWidth=".9" />
+      ))}
+      <path d="M34 34 q 3 2 6 6" strokeWidth=".8" />
     </svg>
   );
 }
 export function SignatureFrame() {
-  const c = "pointer-events-none absolute h-14 w-14 text-accent opacity-45 md:h-16 md:w-16";
+  const c = "pointer-events-none absolute z-10 h-16 w-16 text-accent opacity-50 md:h-20 md:w-20";
   return (<>
-    <GrapeCorner className={`${c} top-1 right-1 -scale-x-100`} />
-    <GrapeCorner className={`${c} top-1 left-1`} />
-    <GrapeCorner className={`${c} bottom-1 right-1 hidden -scale-100 md:block`} />
-    <GrapeCorner className={`${c} bottom-1 left-1 hidden -scale-y-100 md:block`} />
+    <GrapeCorner className={`${c} top-1.5 right-1.5 -scale-x-100`} />
+    <GrapeCorner className={`${c} top-1.5 left-1.5`} />
+    <GrapeCorner className={`${c} bottom-1.5 right-1.5 hidden -scale-100 md:block`} />
+    <GrapeCorner className={`${c} bottom-1.5 left-1.5 hidden -scale-y-100 md:block`} />
   </>);
 }
-export function WineDrop() {
+export function Divider() {
   return (
-    <svg viewBox="0 0 60 80" className="h-20 w-16 text-accent" fill="none" stroke="currentColor" strokeWidth="1.2" aria-label="در حال بارگذاری">
-      <path d="M14 40 h32 c0 14 -7 22 -16 22 s-16 -8 -16 -22Z" />
-      <path d="M30 62 v12 M20 74 h20" />
-      <path className="wine-fill" d="M17 48 h26 c-2 8 -7 12 -13 12 s-11 -4 -13 -12Z" fill="currentColor" stroke="none" opacity=".35" />
-      <path className="wine-drop" d="M30 6 c3 5 5 8 5 11 a5 5 0 0 1 -10 0 c0 -3 2 -6 5 -11Z" fill="currentColor" stroke="none" />
+    <svg viewBox="0 0 240 16" className="w-48 text-accent opacity-70" fill="none" stroke="currentColor" strokeWidth="1" aria-hidden>
+      <path d="M4 8 H 100 M140 8 H 236" strokeWidth=".7" />
+      <path d="M120 2 l 6 6 -6 6 -6 -6Z" />
+      <circle cx="106" cy="8" r="1.6" /><circle cx="134" cy="8" r="1.6" />
     </svg>
   );
 }
